@@ -1,0 +1,109 @@
+{
+  "status": "success",
+  "data": {
+    "activeTargets": [
+      {
+        "discoveredLabels": {
+          "__address__": "blackbox:9115",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "15s",
+          "__scrape_timeout__": "10s",
+          "job": "blackbox-exporter"
+        },
+        "labels": {
+          "instance": "blackbox:9115",
+          "job": "blackbox-exporter"
+        },
+        "scrapePool": "blackbox-exporter",
+        "scrapeUrl": "http://blackbox:9115/metrics",
+        "globalUrl": "http://blackbox:9115/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-27T23:07:25.498628793Z",
+        "lastScrapeDuration": 0.002928011,
+        "health": "up",
+        "scrapeInterval": "15s",
+        "scrapeTimeout": "10s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "http://app:8000/health",
+          "__metrics_path__": "/probe",
+          "__param_module": "http_2xx",
+          "__scheme__": "http",
+          "__scrape_interval__": "15s",
+          "__scrape_timeout__": "10s",
+          "job": "blackbox-health"
+        },
+        "labels": {
+          "instance": "http://app:8000/health",
+          "job": "blackbox-health"
+        },
+        "scrapePool": "blackbox-health",
+        "scrapeUrl": "http://blackbox:9115/probe?module=http_2xx&target=http%3A%2F%2Fapp%3A8000%2Fhealth",
+        "globalUrl": "http://blackbox:9115/probe?module=http_2xx&target=http%3A%2F%2Fapp%3A8000%2Fhealth",
+        "lastError": "",
+        "lastScrape": "2026-10-27T23:07:32.474461062Z",
+        "lastScrapeDuration": 0.012247993,
+        "health": "up",
+        "scrapeInterval": "15s",
+        "scrapeTimeout": "10s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "app:8000",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "10s",
+          "__scrape_timeout__": "10s",
+          "job": "fastapi-app",
+          "service": "fastapi-monitoring-demo"
+        },
+        "labels": {
+          "instance": "app:8000",
+          "job": "fastapi-app",
+          "service": "fastapi-monitoring-demo"
+        },
+        "scrapePool": "fastapi-app",
+        "scrapeUrl": "http://app:8000/metrics",
+        "globalUrl": "http://app:8000/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-27T23:07:34.318268879Z",
+        "lastScrapeDuration": 0.012333917,
+        "health": "up",
+        "scrapeInterval": "10s",
+        "scrapeTimeout": "10s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "localhost:9090",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "15s",
+          "__scrape_timeout__": "10s",
+          "job": "prometheus"
+        },
+        "labels": {
+          "instance": "localhost:9090",
+          "job": "prometheus"
+        },
+        "scrapePool": "prometheus",
+        "scrapeUrl": "http://localhost:9090/metrics",
+        "globalUrl": "http://173f54e906d7:9090/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-27T23:07:31.907814744Z",
+        "lastScrapeDuration": 0.006097444,
+        "health": "up",
+        "scrapeInterval": "15s",
+        "scrapeTimeout": "10s"
+      }
+    ],
+    "droppedTargets": [],
+    "droppedTargetCounts": {
+      "blackbox-exporter": 0,
+      "blackbox-health": 0,
+      "fastapi-app": 0,
+      "prometheus": 0
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "observed_at_utc": "2026-10-27T21:59:05.0938871+00:00",
+  "prometheus_alerts": [
+    {
+      "name": "HighErrorRate",
+      "state": "firing",
+      "activeAt": "2026-10-27T21:57:18.937202015Z",
+      "value": "9.090909090909092e+00",
+      "summary": "High API error rate (>5%)"
+    }
+  ],
+  "alertmanager_alerts": [
+    {
+      "name": "HighErrorRate",
+      "state": "active",
+      "startsAt": "2026-10-27T21:58:18.937Z",
+      "summary": "High API error rate (>5%)"
+    }
+  ],
+  "mailpit_messages": [
+    {
+      "ID": "DgFLpPPRhxpCgiturAghX8",
+      "Created": "2026-10-27T21:58:48.9Z",
+      "Subject": "[ALERT: RESOLVED] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "7xvgiHZWCZPc7ZiDqTKEJ4",
+      "Created": "2026-10-27T21:58:48.9Z",
+      "Subject": "[CRITICAL: RESOLVED] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "SWwg4vyeTtUeUXWZZFRpzs",
+      "Created": "2026-10-27T21:58:48.899Z",
+      "Subject": "[ALERT: RESOLVED] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "hqtUbe6z2syaR9gRo2C5py",
+      "Created": "2026-10-27T21:58:33.9Z",
+      "Subject": "[ALERT: FIRING] High API error rate (>5%)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "R4ggBGGxRmkSUeELDhgthV",
+      "Created": "2026-10-27T21:58:18.894Z",
+      "Subject": "[ALERT: FIRING] Slow API responses detected (>3s)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "grdCCZE4wCEFGVswoGaSKg",
+      "Created": "2026-10-27T21:57:48.902Z",
+      "Subject": "[CRITICAL: FIRING] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "2bZ9FTtKDEV4UKcU3nvYAv",
+      "Created": "2026-10-27T21:57:48.902Z",
+      "Subject": "[ALERT: FIRING] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "6hoPKKpWTAKkScsT47dG5Z",
+      "Created": "2026-10-27T21:57:48.902Z",
+      "Subject": "[ALERT: FIRING] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "Qt3VqmcjnCHUAFA39xmLBV",
+      "Created": "2026-10-27T21:55:18.927Z",
+      "Subject": "[ALERT: RESOLVED] Slow API responses detected (>3s)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "8Qat4GxqbUWzHbsZ5cfkgx",
+      "Created": "2026-10-27T21:54:48.942Z",
+      "Subject": "[ALERT: FIRING] Slow API responses detected (>3s)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "Hvt2vyHbQ3n9ikM8PsRgCA",
+      "Created": "2026-10-27T21:50:03.714Z",
+      "Subject": "[ALERT: RESOLVED] High API error rate (>5%)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "avaDSMAdo6ZxtVmG8m4zkM",
+      "Created": "2026-10-27T21:49:18.739Z",
+      "Subject": "[ALERT: RESOLVED] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "V3p7yY2ETdt8ckoZmohZ2h",
+      "Created": "2026-10-27T21:49:18.731Z",
+      "Subject": "[CRITICAL: RESOLVED] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "U5QapSfTv6KnANikmgWdXn",
+      "Created": "2026-10-27T21:49:18.731Z",
+      "Subject": "[ALERT: RESOLVED] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "nSqLJ7XVagPvpVbsz8FPcx",
+      "Created": "2026-10-27T21:49:18.73Z",
+      "Subject": "[ALERT: RESOLVED] Slow API responses detected (>3s)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "GsRJaECpLZMMLAREqbCwcW",
+      "Created": "2026-10-27T21:49:03.724Z",
+      "Subject": "[ALERT: FIRING] High API error rate (>5%)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "XrbGdyQvaVkFer9fbFYQkt",
+      "Created": "2026-10-27T21:48:18.771Z",
+      "Subject": "[ALERT: FIRING] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "7rk8aZYbzPj5sSPThHNTNr",
+      "Created": "2026-10-27T21:48:18.77Z",
+      "Subject": "[ALERT: FIRING] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "PMvkLRHEk8hU2aeUw7N32F",
+      "Created": "2026-10-27T21:48:18.769Z",
+      "Subject": "[CRITICAL: FIRING] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "msHQdPiBEwJebabFtimQuv",
+      "Created": "2026-10-27T21:48:18.769Z",
+      "Subject": "[ALERT: FIRING] Slow API responses detected (>3s)",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "ESweXBKKfzVxYXdbuTuWNn",
+      "Created": "2026-10-27T21:17:03.944Z",
+      "Subject": "[CRITICAL: RESOLVED] FastAPI service is down or unreachable",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "jUpGMPx6cAdcHLqVZG4zxq",
+      "Created": "2026-10-27T21:16:48.94Z",
+      "Subject": "[CRITICAL: RESOLVED] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "MxbGK8wUxngLPM44oXgDfv",
+      "Created": "2026-10-27T21:16:48.938Z",
+      "Subject": "[ALERT: RESOLVED] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "WthWq8iMZiGNEKB2onoQo5",
+      "Created": "2026-10-27T21:16:48.936Z",
+      "Subject": "[ALERT: RESOLVED] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "8Gpq3NxcsK3JWUdLQbJkg2",
+      "Created": "2026-10-27T21:16:33.94Z",
+      "Subject": "[CRITICAL: FIRING] FastAPI service is down or unreachable",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "4sRPPTY9EiczoxFJu73hpG",
+      "Created": "2026-10-27T21:15:48.939Z",
+      "Subject": "[ALERT: FIRING] Authentication failures (HTTP 401) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "WytCzpycYPp553nVXoyQp5",
+      "Created": "2026-10-27T21:15:48.937Z",
+      "Subject": "[ALERT: FIRING] Rate limit rejections (HTTP 429) detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ]
+    },
+    {
+      "ID": "4AEGzEU6GVnins549LcQT2",
+      "Created": "2026-10-27T21:15:48.936Z",
+      "Subject": "[CRITICAL: FIRING] HTTP 500 Internal Server Error detected",
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "sre-oncall@monitoring.local"
+        }
+      ]
+    }
+  ]
+}

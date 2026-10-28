@@ -1,0 +1,14 @@
+{
+  "/api/health": {
+    "status": 200,
+    "detail": ""
+  },
+  "/api/datasources/uid/Prometheus/health": {
+    "status": 200,
+    "detail": "Successfully queried the Prometheus API."
+  },
+  "/api/dashboards/uid/fastapi-monitoring-overview": {
+    "status": 200,
+    "detail": "FastAPI API Monitoring & Observability Dashboard"
+  }
+}

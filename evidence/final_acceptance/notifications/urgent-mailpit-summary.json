@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-10-28T13:05:48.6069603Z",
+  "total": 2,
+  "messages": [
+    {
+      "id": "RKvMnKPY5bWGxbjcr9Dkcz",
+      "created": "2026-10-28T13:03:48.901Z",
+      "to": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ],
+      "subject": "[ALERT: RESOLVED] Slow API responses detected (>3s)"
+    },
+    {
+      "id": "nehrvLXF74xmZ2Hd8RpZx9",
+      "created": "2026-10-28T13:03:18.905Z",
+      "to": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ],
+      "subject": "[ALERT: FIRING] Slow API responses detected (>3s)"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+# FastAPI Monitoring Demo Application

@@ -1,0 +1,59 @@
+# Prometheus configuration for FastAPI Monitoring Demo
+# Scrapes application metrics and independent health probes
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Load alert rules from separate file
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+
+# Send alerts to Alertmanager
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  # --- FastAPI application metrics ---
+  # Scrapes /metrics endpoint for request counters, histograms, etc.
+  - job_name: "fastapi-app"
+    metrics_path: /metrics
+    scrape_interval: 10s
+    static_configs:
+      - targets:
+          - app:8000
+        labels:
+          service: "fastapi-monitoring-demo"
+
+  # --- Independent health probe via Blackbox Exporter ---
+  # Probes /health from outside the app to detect full service death
+  # This works even when /metrics is unreachable (app crash scenario)
+  - job_name: "blackbox-health"
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+          - http://app:8000/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  # --- Blackbox Exporter own metrics ---
+  - job_name: "blackbox-exporter"
+    static_configs:
+      - targets:
+          - blackbox:9115
+
+  # --- Prometheus self-monitoring ---
+  - job_name: "prometheus"
+    static_configs:
+      - targets:
+          - localhost:9090

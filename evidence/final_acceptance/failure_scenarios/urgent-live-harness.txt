@@ -1,0 +1,45 @@
+Starting Failure Simulation Test Suite against live URL: http://127.0.0.1:8000
+
+============================================================
+SCENARIO A: Authentication Failure Investigation
+============================================================
+Triggering unauthenticated request to: http://127.0.0.1:8000/protected
+HTTP Status: 401 (Expected: 401)
+Response Body: {'detail': 'Invalid or missing API key'}
+X-Request-ID: c203cfcb-6044-4922-982d-e62a835191c3
+[PASS] Scenario A: Authentication Failure verified.
+
+============================================================
+SCENARIO B: Latency Degradation & Client Timeout Investigation
+============================================================
+Phase 1: Measuring slow server response (>3.0 seconds)...
+HTTP Status: 200 (Expected: 200)
+Measured Server Latency: 5.00 seconds
+Response Body: {'detail': 'Response delayed intentionally', 'delay_seconds': 5.0, 'status': 'completed'}
+
+Phase 2: Demonstrating actual client-side timeout exception...
+[PASS] Client-side timeout caught as expected: ReadTimeout
+Detail: Request timed out waiting for server response > 1.0s.
+
+============================================================
+SCENARIO C: Internal Server Error & Exception Investigation
+============================================================
+Triggering deliberate server error at: http://127.0.0.1:8000/simulate-error
+HTTP Status: 500 (Expected: 500)
+Response Body: {'detail': 'Internal server error', 'request_id': '314dd00d-3ac9-4d25-9b76-8e7918535de5'}
+Correlated X-Request-ID: 314dd00d-3ac9-4d25-9b76-8e7918535de5
+[PASS] Scenario C: Controlled 500 error and sanitized response verified.
+
+============================================================
+SCENARIO D: Rate Limit Rejection Investigation
+============================================================
+Triggering rate-limit simulation at: http://127.0.0.1:8000/simulate-rate-limit
+HTTP Status: 429 (Expected: 429)
+Response Body: {'detail': 'Simulated rate limit exceeded'}
+Retry-After Header: 60 seconds
+[PASS] Scenario D: Rate limit HTTP 429 response verified.
+
+============================================================
+Endpoint response scenarios completed. Live mode also checks a real client-side timeout.
+Scenario E (Downtime) is not run by this script; use retained probe history or an explicitly approved outage test.
+============================================================

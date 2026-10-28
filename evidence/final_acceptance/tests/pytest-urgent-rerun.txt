@@ -1,0 +1,34 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\dell\AppData\Local\Python\pythoncore-3.14-64\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Downloads\FastAPI_Monitoring_Documentation_Package\FastAPI_Monitoring_Requirements_Documentation\fastapi-monitoring
+plugins: anyio-4.14.1, asyncio-1.4.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/test_api.py::test_health_endpoint_healthy PASSED                   [  4%]
+tests/test_api.py::test_health_endpoint_unhealthy PASSED                 [  8%]
+tests/test_api.py::test_slow_response_increments_slow_request_counter PASSED [ 12%]
+tests/test_api.py::test_users_endpoint PASSED                            [ 16%]
+tests/test_api.py::test_products_endpoint PASSED                         [ 20%]
+tests/test_api.py::test_simulate_error_returns_500 PASSED                [ 25%]
+tests/test_api.py::test_simulate_rate_limit_returns_429 PASSED           [ 29%]
+tests/test_api.py::test_protected_auth_failure_401 PASSED                [ 33%]
+tests/test_api.py::test_protected_auth_success_200 PASSED                [ 37%]
+tests/test_api.py::test_request_id_custom_propagation PASSED             [ 41%]
+tests/test_api.py::test_request_id_sanitization PASSED                   [ 45%]
+tests/test_api.py::test_authentication_event_log_has_request_id PASSED   [ 50%]
+tests/test_api.py::test_simulated_error_event_log_has_response_request_id PASSED [ 54%]
+tests/test_metrics.py::test_metrics_endpoint_accessible PASSED           [ 58%]
+tests/test_metrics.py::test_metrics_counter_increments_on_requests PASSED [ 62%]
+tests/test_metrics.py::test_metrics_unhandled_exception_recorded PASSED  [ 66%]
+tests/test_metrics.py::test_metrics_scrape_endpoint_excluded_from_business_metrics PASSED [ 70%]
+tests/test_metrics.py::test_unmatched_paths_use_bounded_metric_label PASSED [ 75%]
+tests/test_monitoring_config.py::test_grafana_dashboard_json_valid PASSED [ 79%]
+tests/test_monitoring_config.py::test_dockerfile_exists_and_configured PASSED [ 83%]
+tests/test_monitoring_config.py::test_docker_compose_services PASSED     [ 87%]
+tests/test_monitoring_config.py::test_alert_rules_yaml_structure PASSED  [ 91%]
+tests/test_monitoring_config.py::test_alert_expressions_and_local_mailpit_route PASSED [ 95%]
+tests/test_monitoring_config.py::test_slack_receiver_uses_compose_secret_file_without_embedding_webhook PASSED [100%]
+
+============================= 24 passed in 5.41s ==============================

@@ -1,0 +1,99 @@
+groups:
+  - name: api_alerts
+    rules:
+      # ALERT-01: API Service Down (Critical)
+      # Triggered when Blackbox probe fails or Prometheus cannot scrape the application
+      - alert: APIServiceDown
+        expr: probe_success{job="blackbox-health"} == 0 or up{job="fastapi-app"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "FastAPI service is down or unreachable"
+          description: "Blackbox health probe or Prometheus scrape failed for >30s on instance {{ $labels.instance }}."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#APIServiceDown"
+
+      # ALERT-02: Slow API Responses (> 3.0 seconds) (Warning)
+      # Measured directly via the dedicated slow requests counter
+      - alert: SlowAPIResponses
+        expr: increase(api_http_slow_requests_total[1m]) > 0
+        for: 10s
+        labels:
+          severity: warning
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "Slow API responses detected (>3s)"
+          description: "Route {{ $labels.route }} has completed requests exceeding the 3.0-second threshold."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#SlowAPIResponses"
+
+      # ALERT-03: HTTP 500 Internal Server Errors (Critical)
+      # Triggered when 500 responses occur
+      - alert: HTTP500InternalErrors
+        expr: sum by (route) (rate(api_http_requests_total{status_code="500"}[1m])) > 0
+        for: 15s
+        labels:
+          severity: critical
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "HTTP 500 Internal Server Error detected"
+          description: "Internal server errors detected on route {{ $labels.route }}. Rate: {{ $value }} req/s."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#HTTP500InternalErrors"
+
+      # ALERT-04: High Error Rate (Warning)
+      # Triggered when HTTP 5xx errors exceed 5% of total requests over a 2-minute window
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(api_http_requests_total{status_code=~"5.."}[2m]))
+            /
+            sum(rate(api_http_requests_total[2m]))
+          ) * 100 > 5
+        for: 1m
+        labels:
+          severity: warning
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "High API error rate (>5%)"
+          description: "5xx error rate has exceeded 5% over the last 2 minutes (current: {{ $value | printf \"%.2f\" }}%)."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#HighErrorRate"
+
+      # ALERT-05: Service Health Probe Failed (Critical)
+      # Triggered when the /health endpoint returns non-200 (e.g. 503 degraded)
+      - alert: ServiceHealthDegraded
+        expr: probe_http_status_code{job="blackbox-health"} != 200
+        for: 20s
+        labels:
+          severity: critical
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "Service /health endpoint degraded"
+          description: "Independent probe received HTTP status {{ $value }} from /health endpoint."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#ServiceHealthDegraded"
+
+      # ALERT-06: Authentication Failure Spike (Warning)
+      # Triggered when 401 Unauthorized responses occur (Scenario A / RCA-01)
+      - alert: AuthenticationFailureSpike
+        expr: sum by (route) (rate(api_http_requests_total{status_code="401"}[1m])) > 0
+        for: 15s
+        labels:
+          severity: warning
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "Authentication failures (HTTP 401) detected"
+          description: "Unauthenticated requests detected on route {{ $labels.route }}. Potential unauthorized access attempt."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#AuthenticationFailureSpike"
+
+      # ALERT-07: Rate Limit Exceeded Spike (Warning)
+      # Triggered when 429 Too Many Requests responses occur (Scenario D / RCA-04)
+      - alert: RateLimitExceededSpike
+        expr: sum by (route) (rate(api_http_requests_total{status_code="429"}[1m])) > 0
+        for: 15s
+        labels:
+          severity: warning
+          service: fastapi-monitoring-demo
+        annotations:
+          summary: "Rate limit rejections (HTTP 429) detected"
+          description: "Clients are encountering 429 Too Many Requests rejections on route {{ $labels.route }}."
+          runbook_url: "https://github.com/fastapi-monitoring/runbook#RateLimitExceededSpike"
+

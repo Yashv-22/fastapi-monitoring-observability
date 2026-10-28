@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.secrets/
+.git/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+evidence/
+tests/

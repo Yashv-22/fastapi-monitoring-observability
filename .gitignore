@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.secrets/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+Thumbs.db

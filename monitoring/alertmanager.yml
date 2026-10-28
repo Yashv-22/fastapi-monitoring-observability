@@ -1,0 +1,63 @@
+# Alertmanager configuration for FastAPI Monitoring Demo
+# Routes local email to Mailpit and Slack alerts through a runtime secret file.
+
+global:
+  resolve_timeout: 1m
+  smtp_smarthost: 'mailpit:1025'
+  smtp_from: 'alerts@monitoring.local'
+  smtp_require_tls: false
+
+route:
+  group_by: ['alertname', 'service']
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 2h
+  receiver: 'mailpit-default'
+  routes:
+    # Route critical alerts to dedicated critical receiver
+    - match:
+        severity: critical
+      receiver: 'mailpit-critical'
+      continue: true
+
+receivers:
+  - name: 'mailpit-default'
+    email_configs:
+      - to: 'devops-team@monitoring.local'
+        send_resolved: true
+        headers:
+          Subject: '[ALERT: {{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        html: |
+          <h2>Alert Notification</h2>
+          <p><strong>Alert:</strong> {{ .CommonAnnotations.summary }}</p>
+          <p><strong>Severity:</strong> {{ .CommonLabels.severity }}</p>
+          <p><strong>Service:</strong> {{ .CommonLabels.service }}</p>
+          <p><strong>Description:</strong> {{ .CommonAnnotations.description }}</p>
+          <p><strong>Status:</strong> {{ .Status }}</p>
+    slack_configs:
+      - api_url_file: /run/secrets/slack_webhook_url
+        channel: '#alerts'
+        send_resolved: true
+        title: '[{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        text: '{{ .CommonAnnotations.description }}'
+
+  - name: 'mailpit-critical'
+    email_configs:
+      - to: 'sre-oncall@monitoring.local'
+        send_resolved: true
+        headers:
+          Subject: '[CRITICAL: {{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        html: |
+          <h2 style="color: red;">CRITICAL SERVICE ALERT</h2>
+          <p><strong>Alert:</strong> {{ .CommonAnnotations.summary }}</p>
+          <p><strong>Severity:</strong> {{ .CommonLabels.severity }}</p>
+          <p><strong>Service:</strong> {{ .CommonLabels.service }}</p>
+          <p><strong>Description:</strong> {{ .CommonAnnotations.description }}</p>
+          <p><strong>Runbook:</strong> <a href="{{ .CommonAnnotations.runbook_url }}">{{ .CommonAnnotations.runbook_url }}</a></p>
+    slack_configs:
+      - api_url_file: /run/secrets/slack_webhook_url
+        channel: '#alerts'
+        send_resolved: true
+        title: '[{{ .Status | toUpper }}] {{ .CommonAnnotations.summary }}'
+        text: '{{ .CommonAnnotations.description }}'
+

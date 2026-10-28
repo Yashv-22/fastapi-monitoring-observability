@@ -1,0 +1,153 @@
+{
+  "observed_at_utc": "2026-10-27T22:00:58.5501757+00:00",
+  "health_state": "unhealthy override",
+  "rules": [
+    {
+      "name": "APIServiceDown",
+      "state": "firing",
+      "health": "ok",
+      "query": "probe_success{job=\"blackbox-health\"} == 0 or up{job=\"fastapi-app\"} == 0"
+    },
+    {
+      "name": "SlowAPIResponses",
+      "state": "inactive",
+      "health": "ok",
+      "query": "increase(api_http_slow_requests_total[1m]) > 0"
+    },
+    {
+      "name": "HTTP500InternalErrors",
+      "state": "inactive",
+      "health": "ok",
+      "query": "sum by (route) (rate(api_http_requests_total{status_code=\"500\"}[1m])) > 0"
+    },
+    {
+      "name": "HighErrorRate",
+      "state": "pending",
+      "health": "ok",
+      "query": "(sum(rate(api_http_requests_total{status_code=~\"5..\"}[2m])) / sum(rate(api_http_requests_total[2m]))) * 100 > 5"
+    },
+    {
+      "name": "ServiceHealthDegraded",
+      "state": "firing",
+      "health": "ok",
+      "query": "probe_http_status_code{job=\"blackbox-health\"} != 200"
+    },
+    {
+      "name": "AuthenticationFailureSpike",
+      "state": "inactive",
+      "health": "ok",
+      "query": "sum by (route) (rate(api_http_requests_total{status_code=\"401\"}[1m])) > 0"
+    },
+    {
+      "name": "RateLimitExceededSpike",
+      "state": "inactive",
+      "health": "ok",
+      "query": "sum by (route) (rate(api_http_requests_total{status_code=\"429\"}[1m])) > 0"
+    }
+  ],
+  "active_alerts": [
+    {
+      "name": "APIServiceDown",
+      "state": "firing",
+      "activeAt": "2026-10-27T22:00:03.937202015Z",
+      "value": "0e+00",
+      "summary": "FastAPI service is down or unreachable"
+    },
+    {
+      "name": "HighErrorRate",
+      "state": "pending",
+      "activeAt": "2026-10-27T22:00:18.937202015Z",
+      "value": "4.911200892736354e+01",
+      "summary": "High API error rate (>5%)"
+    },
+    {
+      "name": "ServiceHealthDegraded",
+      "state": "firing",
+      "activeAt": "2026-10-27T22:00:03.937202015Z",
+      "value": "5.03e+02",
+      "summary": "Service /health endpoint degraded"
+    }
+  ],
+  "alertmanager": [
+    {
+      "name": "ServiceHealthDegraded",
+      "state": "active",
+      "startsAt": "2026-10-27T22:00:33.937Z",
+      "summary": "Service /health endpoint degraded"
+    },
+    {
+      "name": "APIServiceDown",
+      "state": "active",
+      "startsAt": "2026-10-27T22:00:33.937Z",
+      "summary": "FastAPI service is down or unreachable"
+    }
+  ],
+  "probe_queries": {
+    "probe_success{job=\"blackbox-health\"}": [
+      {
+        "metric": {
+          "__name__": "probe_success",
+          "instance": "http://app:8000/health",
+          "job": "blackbox-health"
+        },
+        "value": [
+          1793138458.713,
+          "0"
+        ]
+      }
+    ],
+    "probe_http_status_code{job=\"blackbox-health\"}": [
+      {
+        "metric": {
+          "__name__": "probe_http_status_code",
+          "instance": "http://app:8000/health",
+          "job": "blackbox-health"
+        },
+        "value": [
+          1793138458.72,
+          "503"
+        ]
+      }
+    ],
+    "up{job=\"fastapi-app\"}": [
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "app:8000",
+          "job": "fastapi-app",
+          "service": "fastapi-monitoring-demo"
+        },
+        "value": [
+          1793138458.723,
+          "1"
+        ]
+      }
+    ]
+  },
+  "targets": [
+    {
+      "job": "blackbox-exporter",
+      "health": "up",
+      "lastScrape": "2026-10-27T22:00:45.56368661Z",
+      "lastError": ""
+    },
+    {
+      "job": "blackbox-health",
+      "health": "up",
+      "lastScrape": "2026-10-27T22:00:52.111177234Z",
+      "lastError": ""
+    },
+    {
+      "job": "fastapi-app",
+      "health": "up",
+      "lastScrape": "2026-10-27T22:00:55.866870113Z",
+      "lastError": ""
+    },
+    {
+      "job": "prometheus",
+      "health": "up",
+      "lastScrape": "2026-10-27T22:00:55.27744518Z",
+      "lastError": ""
+    }
+  ]
+}

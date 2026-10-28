@@ -1,0 +1,58 @@
+{
+  "total": 2,
+  "unread": 2,
+  "count": 2,
+  "messages_count": 2,
+  "start": 0,
+  "tags": [],
+  "messages": [
+    {
+      "ID": "RKvMnKPY5bWGxbjcr9Dkcz",
+      "MessageID": "1793192628900374275.8791470114360198631@d5d6a55ef7c5",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ],
+      "Cc": [],
+      "Bcc": [],
+      "ReplyTo": [],
+      "Subject": "[ALERT: RESOLVED] Slow API responses detected (>3s)",
+      "Created": "2026-10-28T13:03:48.901Z",
+      "Tags": [],
+      "Size": 1205,
+      "Attachments": 0,
+      "Snippet": "Alert Notification Alert: Slow API responses detected (>3s) Severity: warning Service: fastapi-monitoring-demo Description: Route /simulate-timeout has completed requests exceeding the 3.0-second thre..."
+    },
+    {
+      "ID": "nehrvLXF74xmZ2Hd8RpZx9",
+      "MessageID": "1793192598904846259.17462342506874919777@d5d6a55ef7c5",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "alerts@monitoring.local"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "devops-team@monitoring.local"
+        }
+      ],
+      "Cc": [],
+      "Bcc": [],
+      "ReplyTo": [],
+      "Subject": "[ALERT: FIRING] Slow API responses detected (>3s)",
+      "Created": "2026-10-28T13:03:18.905Z",
+      "Tags": [],
+      "Size": 1202,
+      "Attachments": 0,
+      "Snippet": "Alert Notification Alert: Slow API responses detected (>3s) Severity: warning Service: fastapi-monitoring-demo Description: Route /simulate-timeout has completed requests exceeding the 3.0-second thre..."
+    }
+  ]
+}
